@@ -2,6 +2,7 @@ import { Movie } from "@/typings";
 import Image from "next/image";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useEffect, useRef } from "react";
+import { log } from "console";
 
 interface Props {
     title: string;
@@ -12,14 +13,32 @@ function Row({ title, movies }: Props) {
     const rowRef = useRef<HTMLDivElement | null>(null);
 
     function handleClick(direction: string) {
-        if (rowRef.current) {
-            const { scrollLeft, clientWidth } = rowRef.current;
+        let currentPosition = 0;
+        function setPostion() {
+            rowRef.current?.scrollTo({
+                left: currentPosition,
+                behavior: "smooth",
+            });
+        }
 
-            const scrollTo =
-                direction === "left"
-                    ? scrollLeft - clientWidth
-                    : scrollLeft + clientWidth;
-            rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+        if (rowRef.current) {
+            const { scrollLeft, clientWidth, scrollWidth } = rowRef.current;
+
+            if (direction === "left") {
+                currentPosition = scrollLeft - clientWidth;
+                setPostion();
+            } else {
+                currentPosition = scrollLeft + clientWidth;
+                setPostion();
+            }
+
+            if (currentPosition === -clientWidth) {
+                currentPosition = scrollLeft + scrollWidth;
+                setPostion();
+            } else if (currentPosition === scrollWidth) {
+                currentPosition = scrollLeft - scrollWidth;
+                setPostion();
+            }
         }
     }
 
