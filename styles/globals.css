@@ -16,4 +16,14 @@
     .headerLink {
         @apply cursor-pointer text-[#e5e5e5] transition duration-300 hover:text-[#b3b3b3];
     }
+
+    .textShadow {
+        text-shadow: 3px 3px 6px rgb(0 0 0 / 26%), 0 0 5px rgb(15 3 86 / 22%);
+    }
+
+    .bannerButton {
+        @apply flex items-center gap-x-2 rounded px-4 py-1.5 font-semibold transition
+        hover:opacity-75  md:py-2 md:px-5 md:text-2xl;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.521);
+    }
 }
