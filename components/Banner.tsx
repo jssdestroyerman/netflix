@@ -21,7 +21,7 @@ function Banner({ netflixOriginals }: Props) {
 
     return (
         <>
-            <div className="absolute top-0 w-screen h-[95vh] -z-10">
+            <div className="absolute top-0 w-screen h-[70vh] lg:h-[95vh] -z-10">
                 <Image
                     src={`${baseUrl}${
                         movie?.backdrop_path || movie?.poster_path
@@ -31,7 +31,7 @@ function Banner({ netflixOriginals }: Props) {
                     className=" object-cover"
                 />
             </div>
-            <div className="textShadow py-32 px-4 lg:py-60 md:w-[600px] lg:w-[800px]">
+            <div className="textShadow py-32 px-4 lg:py-60 md:w-[600px] lg:w-[800px] lg:pl-10">
                 <h1 className=" text-3xl py-4 md:text-5xl lg:text-7xl font-bold ">
                     {movie?.title || movie?.name || movie?.original_name}
                 </h1>
