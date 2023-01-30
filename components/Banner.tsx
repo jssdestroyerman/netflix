@@ -35,7 +35,9 @@ function Banner({ netflixOriginals }: Props) {
                 <h1 className=" text-3xl py-4 md:text-5xl lg:text-7xl font-bold ">
                     {movie?.title || movie?.name || movie?.original_name}
                 </h1>
-                <p>{movie?.overview}</p>
+                <p className=" text-sm md:text-base lg:text-lg">
+                    {movie?.overview}
+                </p>
 
                 <div className="flex mt-5 space-x-3">
                     <button className="bannerButton bg-white text-black">
