@@ -1,8 +1,7 @@
 import { Movie } from "@/typings";
 import Image from "next/image";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { useEffect, useRef } from "react";
-import { log } from "console";
+import { useRef } from "react";
 
 interface Props {
     title: string;
@@ -47,7 +46,7 @@ function Row({ title, movies }: Props) {
             <h2 className=" font-semibold mb-2 md:text-2xl">{title}</h2>
             <div className="group relative md:-ml-2">
                 <HiChevronLeft
-                    className="absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100"
+                    className="absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 md:h-14 md:w-14"
                     onClick={() => handleClick("left")}
                 />
 
@@ -75,7 +74,7 @@ function Row({ title, movies }: Props) {
                 </div>
 
                 <HiChevronRight
-                    className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100"
+                    className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 md:h-14 md:w-14"
                     onClick={() => handleClick("right")}
                 />
             </div>
