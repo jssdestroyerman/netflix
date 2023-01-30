@@ -25,7 +25,7 @@ function Row({ title, movies }: Props) {
 
     return (
         <div className=" h-40 space-y-0.5 md:space-y-2 pl-4 lg:pl-10">
-            <h2 className=" font-semibold md:text-2xl">{title}</h2>
+            <h2 className=" font-semibold mb-2 md:text-2xl">{title}</h2>
             <div className="group relative md:-ml-2">
                 <HiChevronLeft
                     className="absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100"

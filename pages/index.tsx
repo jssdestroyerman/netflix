@@ -53,7 +53,7 @@ export default function Home({
             <Header />
             <main className="relative">
                 <Banner netflixOriginals={netflixOriginals} />
-                <section className=" space-y-24">
+                <section className=" space-y-6 md:space-y-24">
                     <Row title="Trending Now" movies={trendingNow} />
                     <Row title="Top Rated" movies={topRated} />
                     <Row title="Action Thrillers" movies={actionMovies} />
