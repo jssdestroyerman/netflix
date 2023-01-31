@@ -1,14 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import Header from "@/components/Header";
 import requests from "@/utils/requests";
 import { Movie } from "@/typings";
-import cx from "classnames";
 import Banner from "@/components/Banner";
 import Row from "@/components/Row";
-
-const inter = Inter({ subsets: ["latin"] });
 
 interface Props {
     netflixOriginals: Movie[];
@@ -32,12 +27,7 @@ export default function Home({
     documentaries,
 }: Props) {
     return (
-        <div
-            className={cx(
-                "backgroundGradient relative h-screen lg:h-[140vh]",
-                inter.className
-            )}
-        >
+        <div className="backgroundGradient relative h-screen lg:h-[140vh]">
             <Head>
                 <title>Netflix - Home</title>
                 <meta
