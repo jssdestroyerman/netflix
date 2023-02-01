@@ -71,14 +71,14 @@ function Modal() {
                     <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
                         <div className="flex space-x-2">
                             <button className=" flex items-center gap-x-2 rounded bg-white px-4 py-1.5 text-xl font-semibold text-black transition hover:bg-[#e6e6e6]">
-                                <HiPlay className=" h-4 w-4 text-black md:h-7 md:w-7" />
+                                <HiPlay className=" h-6 w-6 text-black md:h-7 md:w-7" />
                                 Play
                             </button>
                             <button className="modalButton">
-                                <HiPlus className="h-5 w-5 md:h-7 md:w-7" />
+                                <HiPlus className="h-6 w-6 md:h-7 md:w-7" />
                             </button>
                             <button className="modalButton">
-                                <HiOutlineThumbUp className=" h-5 w-5 md:h-7 md:w-7" />
+                                <HiOutlineThumbUp className=" h-6 w-6 md:h-7 md:w-7" />
                             </button>
                         </div>
                         <button
