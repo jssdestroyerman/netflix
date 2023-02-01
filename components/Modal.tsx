@@ -24,16 +24,20 @@ function Modal() {
                 }&language=en-US&append_to_response=videos`
             ).then((res) => res.json());
 
-            console.log(data);
+            console.log(data.videos);
 
-            if (data?.videos) {
+            if (data?.videos.results.length > 0) {
                 const index = data.videos.results.findIndex(
                     (element: Element) => element.type === "Trailer"
                 );
 
-                index
-                    ? setTrailer(data.videos.results[index].key)
-                    : setTrailer(false);
+                if (index > -1) {
+                    setTrailer(data.videos.results[index].key);
+                } else {
+                    setTrailer(data.videos.results[0].key);
+                }
+            } else {
+                setTrailer(false);
             }
 
             if (data?.genres) {
@@ -61,7 +65,7 @@ function Modal() {
                     <HiOutlineXMark className=" h-7 w-7" />
                 </button>
 
-                <div className="relative pt-[56.25%]">
+                <div className="relative flex items-center justify-center pt-[56.25%]">
                     {trailer ? (
                         <ReactPlayer
                             url={`https://www.youtube.com/watch?v=${trailer}`}
@@ -76,8 +80,8 @@ function Modal() {
                             muted={muted}
                         />
                     ) : (
-                        <p className=" text-sm md:text-2xl">
-                            Sorry ! this content doesn&apos;t have trailer
+                        <p className="absolute bottom-24 md:text-2xl px-2 py-1 md:px-4 md:py-4 md:bottom-40 bg-white rounded text-black font-semibold">
+                            Sorry ! This content doesn&apos;t have trailer
                         </p>
                     )}
 
