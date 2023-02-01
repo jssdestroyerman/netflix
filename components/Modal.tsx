@@ -10,7 +10,7 @@ import { HiVolumeOff, HiVolumeUp, HiOutlineThumbUp } from "react-icons/hi";
 function Modal() {
     const [showModal, setShowModal] = useRecoilState(modalState);
     const [currentMovie, setCurrentMovie] = useRecoilState(movieState);
-    const [trailer, setTrailer] = useState("");
+    const [trailer, setTrailer] = useState<false | string>("");
     const [genres, setGenres] = useState<Genre[]>([]);
     const [muted, setMuted] = useState(true);
 
@@ -30,7 +30,10 @@ function Modal() {
                 const index = data.videos.results.findIndex(
                     (element: Element) => element.type === "Trailer"
                 );
-                setTrailer(data.videos.results[index].key);
+
+                index
+                    ? setTrailer(data.videos.results[index].key)
+                    : setTrailer(false);
             }
 
             if (data?.genres) {
@@ -53,32 +56,42 @@ function Modal() {
             <>
                 <button
                     onClick={handleClose}
-                    className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818]"
+                    className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 md:h-11 md:w-11 border-none bg-[#181818] hover:bg-[#181818]"
                 >
-                    <HiOutlineXMark className=" h-6 w-6" />
+                    <HiOutlineXMark className=" h-7 w-7" />
                 </button>
 
                 <div className="relative pt-[56.25%]">
-                    <ReactPlayer
-                        url={`https://www.youtube.com/watch?v=${trailer}`}
-                        width="100%"
-                        height="100%"
-                        style={{ position: "absolute", top: "0", left: "0" }}
-                        playing
-                        muted={muted}
-                    />
+                    {trailer ? (
+                        <ReactPlayer
+                            url={`https://www.youtube.com/watch?v=${trailer}`}
+                            width="100%"
+                            height="100%"
+                            style={{
+                                position: "absolute",
+                                top: "0",
+                                left: "0",
+                            }}
+                            playing
+                            muted={muted}
+                        />
+                    ) : (
+                        <p className=" text-sm md:text-2xl">
+                            Sorry ! this content doesn&apos;t have trailer
+                        </p>
+                    )}
 
                     <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
                         <div className="flex space-x-2">
-                            <button className=" flex items-center gap-x-2 rounded bg-white px-4 py-1.5 text-xl font-semibold text-black transition hover:bg-[#e6e6e6]">
-                                <HiPlay className=" h-6 w-6 text-black md:h-7 md:w-7" />
+                            <button className=" flex items-center gap-x-2 rounded bg-white px-4 py-1.5 text-sm md:text-xl font-semibold text-black transition hover:bg-[#e6e6e6]">
+                                <HiPlay className=" h-4 w-4 text-black md:h-7 md:w-7" />
                                 Play
                             </button>
                             <button className="modalButton">
-                                <HiPlus className="h-6 w-6 md:h-7 md:w-7" />
+                                <HiPlus className="h-4 w-4 md:h-7 md:w-7" />
                             </button>
                             <button className="modalButton">
-                                <HiOutlineThumbUp className=" h-6 w-6 md:h-7 md:w-7" />
+                                <HiOutlineThumbUp className=" h-4 w-4 md:h-7 md:w-7" />
                             </button>
                         </div>
                         <button
@@ -86,19 +99,20 @@ function Modal() {
                             onClick={() => setMuted(!muted)}
                         >
                             {muted ? (
-                                <HiVolumeOff className="h-6 w-6" />
+                                <HiVolumeOff className="h-4 w-4 md:h-6 md:w-6" />
                             ) : (
-                                <HiVolumeUp className="h-6 w-6" />
+                                <HiVolumeUp className="h-4 w-4 md:h-6 md:w-6" />
                             )}
                         </button>
                     </div>
                 </div>
 
-                <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
+                <div className="flex space-x-16 rounded-b-md bg-[#181818] px-5 md:px-10 py-8">
                     <div className="space-y-6 text-lg">
                         <div className="flex items-center space-x-2 test-sm">
                             <p className=" font-semibold text-green-400">
-                                {currentMovie?.vote_average * 10}% Match
+                                {Math.floor(currentMovie?.vote_average * 10)}%
+                                Match
                             </p>
                             <p className=" font-light">
                                 {currentMovie?.release_date ||
@@ -110,7 +124,9 @@ function Modal() {
                         </div>
 
                         <div className=" flex flex-col gap-x-10 gap-y-4  md:flex-row">
-                            <p className="w-5/6">{currentMovie?.overview}</p>
+                            <p className="md:w-5/6 text-justify md:text-left">
+                                {currentMovie?.overview}
+                            </p>
                             <div className=" flex flex-col space-y-3 text-sm">
                                 <div>
                                     <span className=" text-[gray]">
