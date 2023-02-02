@@ -24,7 +24,7 @@ function Plans({ products }: Props) {
     const [selectedPlan, setSelectedPlan] = useState<Product>(products[2]);
     const [isBillingLoading, setIsBillingLoading] = useState(false);
     const [login, setLogin] = useState(false);
-    const { signIn, signUp } = useAuth();
+    const { signUp } = useAuth();
 
     const {
         register,
@@ -35,10 +35,11 @@ function Plans({ products }: Props) {
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         if (login) {
             await signUp(data.email, data.password);
+            subscribeToPlan();
         }
     };
 
-    function subscribeToPlan() {
+    async function subscribeToPlan() {
         if (!user) return;
 
         loadCheckout(selectedPlan.prices[0].id);
@@ -166,7 +167,6 @@ function Plans({ products }: Props) {
                                 isBillingLoading && "opacity-60"
                             }`}
                             onClick={() => {
-                                subscribeToPlan();
                                 setLogin(true);
                             }}
                         >
