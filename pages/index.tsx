@@ -7,6 +7,8 @@ import Row from "@/components/Row";
 import { useRecoilValue } from "recoil";
 import { modalState } from "@/atoms/modalAtom";
 import Modal from "@/components/Modal";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/router";
 
 interface Props {
     netflixOriginals: Movie[];
@@ -30,6 +32,13 @@ export default function Home({
     documentaries,
 }: Props) {
     const showModal = useRecoilValue(modalState);
+    const { loading } = useAuth();
+    const subscription = false;
+    const router = useRouter();
+
+    if (loading || subscription === null) return null;
+
+    if (!subscription) return router.push("/plans");
 
     return (
         <div className="backgroundGradient relative h-screen lg:h-[140vh]">
