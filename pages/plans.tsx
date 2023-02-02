@@ -8,26 +8,42 @@ import Link from "next/link";
 import { HiCheck } from "react-icons/hi";
 import { useState } from "react";
 import Loader from "@/components/Loader";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {
     products: Product[];
+}
+
+interface Inputs {
+    email: string;
+    password: string;
 }
 
 function Plans({ products }: Props) {
     const { logout, user } = useAuth();
     const [selectedPlan, setSelectedPlan] = useState<Product>(products[2]);
     const [isBillingLoading, setIsBillingLoading] = useState(false);
+    const [login, setLogin] = useState(false);
+    const { signUp } = useAuth();
 
-    console.log(selectedPlan);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        if (login) {
+            await signUp(data.email, data.password);
+        }
+    };
 
-    function subscribeToPlan() {
+    async function subscribeToPlan() {
         if (!user) return;
 
         loadCheckout(selectedPlan.prices[0].id);
         setIsBillingLoading(true);
     }
-
-    console.log(products);
 
     return (
         <div>
@@ -64,11 +80,11 @@ function Plans({ products }: Props) {
             </header>
 
             <main className=" pt-28 lg:w-[1000px] m-auto pb-12 transition-all md:px-10">
-                <h1 className=" mb-3 text-3xl font-medium">
+                <h1 className=" mb-3 text-3xl px-2 font-medium">
                     Choose the plan that&apos;s right for you
                 </h1>
 
-                <ul>
+                <ul className=" px-2">
                     <li className="flex items-center gap-x-2 text-lg">
                         <HiCheck className="h-7 w-7 text-[#E50914]" /> Watch all
                         you want. Ad-free.
@@ -101,20 +117,85 @@ function Plans({ products }: Props) {
                     </div>
 
                     <Table products={products} selectedPlan={selectedPlan} />
-
-                    <button
-                        disabled={!selectedPlan || isBillingLoading}
-                        className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
-                            isBillingLoading && "opacity-60"
-                        }`}
-                        onClick={subscribeToPlan}
-                    >
-                        {isBillingLoading ? (
-                            <Loader color="dark:fill-gray-300" />
-                        ) : (
-                            "Subscribe"
-                        )}
-                    </button>
+                    {!user && (
+                        <form
+                            onSubmit={handleSubmit(onSubmit)}
+                            className="relative mt-24 space-y-8 rounded py-10 px-2"
+                        >
+                            <h1 className=" text-3xl font-medium">
+                                Create a password to start your membership
+                            </h1>
+                            <p className="text-lg">
+                                Just a few more steps and you&apos;re finished!
+                                We hate paperwork, too.
+                            </p>
+                            <div className=" space-y-4 md:space-x-[2%]">
+                                <label className="inline-block w-full md:w-[48%]">
+                                    <input
+                                        type="email"
+                                        placeholder="Email"
+                                        className=" input"
+                                        {...register("email", {
+                                            required: true,
+                                        })}
+                                    />
+                                    {errors.email && (
+                                        <p className="p-1 text-[13px] text-orange-500">
+                                            Please enter a valid email.
+                                        </p>
+                                    )}
+                                </label>
+                                <label className="inline-block w-full md:w-[48%]">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        className="input"
+                                        {...register("password", {
+                                            required: true,
+                                        })}
+                                    />
+                                    {errors.password && (
+                                        <p className="p-1 text-[13px]  text-orange-500">
+                                            Your password must contain between 4
+                                            and 60 characters.
+                                        </p>
+                                    )}
+                                </label>
+                            </div>
+                            <button
+                                disabled={!selectedPlan || isBillingLoading}
+                                className={`w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[400px] block m-auto ${
+                                    isBillingLoading && "opacity-60"
+                                }`}
+                                onClick={() => {
+                                    setLogin(true);
+                                }}
+                            >
+                                {isBillingLoading ? (
+                                    <Loader color="dark:fill-gray-300" />
+                                ) : (
+                                    "Subscribe"
+                                )}
+                            </button>
+                        </form>
+                    )}
+                    {user && (
+                        <button
+                            disabled={!selectedPlan || isBillingLoading}
+                            className={`w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[400px] block m-auto ${
+                                isBillingLoading && "opacity-60"
+                            }`}
+                            onClick={() => {
+                                subscribeToPlan();
+                            }}
+                        >
+                            {isBillingLoading ? (
+                                <Loader color="dark:fill-gray-300" />
+                            ) : (
+                                "Continue"
+                            )}
+                        </button>
+                    )}
                 </div>
             </main>
         </div>

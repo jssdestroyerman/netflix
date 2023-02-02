@@ -1,6 +1,7 @@
 import useAuth from "@/hooks/useAuth";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -22,8 +23,6 @@ function Login() {
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         if (login) {
             await signIn(data.email, data.password);
-        } else {
-            await signUp(data.email, data.password);
         }
     };
 
@@ -99,13 +98,14 @@ function Login() {
                 </button>
                 <div className=" text-[#e5e5e5]/70">
                     New to Netflix ?{" "}
-                    <button
-                        type="submit"
-                        className=" text-white hover:underline"
-                        onClick={() => setLogin(false)}
-                    >
-                        Sign Up Now !
-                    </button>
+                    <Link href={"/plans"}>
+                        <button
+                            type="submit"
+                            className=" text-white hover:underline"
+                        >
+                            Sign Up Now !
+                        </button>
+                    </Link>
                 </div>
             </form>
         </div>

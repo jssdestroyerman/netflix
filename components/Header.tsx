@@ -1,8 +1,10 @@
+import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineBellAlert, HiMagnifyingGlass } from "react-icons/hi2";
 
 function Header() {
+    const { logout } = useAuth();
     return (
         <header>
             <div className="flex items-center space-x-2 md:space-x-10">
@@ -26,7 +28,7 @@ function Header() {
                 <HiMagnifyingGlass className="hidden h-6 w-6 sm:inline " />
                 <p className="hidden lg:inline">Kids</p>
                 <HiOutlineBellAlert className="h-6 w-6 " />
-                <Link href="/account">
+                <div onClick={logout}>
                     <Image
                         src="https://rb.gy/g1pwyx"
                         alt=""
@@ -34,7 +36,7 @@ function Header() {
                         height={35}
                         className="cursor-pointer rounded"
                     />
-                </Link>
+                </div>
             </div>
         </header>
     );
