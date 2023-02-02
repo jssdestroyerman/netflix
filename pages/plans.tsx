@@ -35,7 +35,6 @@ function Plans({ products }: Props) {
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         if (login) {
             await signUp(data.email, data.password);
-            subscribeToPlan();
         }
     };
 
