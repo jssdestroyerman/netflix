@@ -9,6 +9,7 @@ import { modalState } from "@/atoms/modalAtom";
 import Modal from "@/components/Modal";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/router";
+import useSubscription from "@/hooks/useSubscription";
 
 interface Props {
     netflixOriginals: Movie[];
@@ -32,8 +33,8 @@ export default function Home({
     documentaries,
 }: Props) {
     const showModal = useRecoilValue(modalState);
-    const { loading } = useAuth();
-    const subscription = false;
+    const { loading, user } = useAuth();
+    const subscription = useSubscription(user);
     const router = useRouter();
 
     if (loading || subscription === null) return null;

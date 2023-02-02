@@ -1,20 +1,31 @@
 import Table from "@/components/Table";
 import useAuth from "@/hooks/useAuth";
-import { payments } from "@/lib/stripe";
+import { loadCheckout, payments } from "@/lib/stripe";
 import { getProducts, Product } from "@stripe/firestore-stripe-payments";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { HiCheck } from "react-icons/hi";
 import { useState } from "react";
+import Loader from "@/components/Loader";
 
 interface Props {
     products: Product[];
 }
 
 function Plans({ products }: Props) {
-    const { logout } = useAuth();
+    const { logout, user } = useAuth();
     const [selectedPlan, setSelectedPlan] = useState<Product>(products[2]);
+    const [isBillingLoading, setIsBillingLoading] = useState(false);
+
+    console.log(selectedPlan);
+
+    function subscribeToPlan() {
+        if (!user) return;
+
+        loadCheckout(selectedPlan.prices[0].id);
+        setIsBillingLoading(true);
+    }
 
     console.log(products);
 
@@ -90,6 +101,20 @@ function Plans({ products }: Props) {
                     </div>
 
                     <Table products={products} selectedPlan={selectedPlan} />
+
+                    <button
+                        disabled={!selectedPlan || isBillingLoading}
+                        className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
+                            isBillingLoading && "opacity-60"
+                        }`}
+                        onClick={subscribeToPlan}
+                    >
+                        {isBillingLoading ? (
+                            <Loader color="dark:fill-gray-300" />
+                        ) : (
+                            "Subscribe"
+                        )}
+                    </button>
                 </div>
             </main>
         </div>
