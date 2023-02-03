@@ -28,7 +28,7 @@ function Header() {
                 <HiMagnifyingGlass className="hidden h-6 w-6 sm:inline " />
                 <p className="hidden lg:inline">Kids</p>
                 <HiOutlineBellAlert className="h-6 w-6 " />
-                <div onClick={logout}>
+                <Link href={"/account"}>
                     <Image
                         src="https://rb.gy/g1pwyx"
                         alt=""
@@ -36,7 +36,7 @@ function Header() {
                         height={35}
                         className="cursor-pointer rounded"
                     />
-                </div>
+                </Link>
             </div>
         </header>
     );
