@@ -39,7 +39,7 @@ export default function Home({
 
     if (loading) return null;
 
-    if (!subscription) return router.push("/plans");
+    // if (!subscription) return router.push("/plans");
 
     return (
         <div className="backgroundGradient relative h-screen lg:h-[140vh]">

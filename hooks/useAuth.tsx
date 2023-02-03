@@ -63,7 +63,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setUser(userCredential.user);
-                router.push("/");
                 setLoading(false);
             })
             .catch((error) => alert(error.message))

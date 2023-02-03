@@ -23,7 +23,6 @@ function Plans({ products }: Props) {
     const { logout, user } = useAuth();
     const [selectedPlan, setSelectedPlan] = useState<Product>(products[2]);
     const [isBillingLoading, setIsBillingLoading] = useState(false);
-    const [login, setLogin] = useState(false);
     const { signUp } = useAuth();
 
     const {
@@ -33,9 +32,8 @@ function Plans({ products }: Props) {
         formState: { errors },
     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        if (login) {
-            await signUp(data.email, data.password);
-        }
+        await signUp(data.email, data.password);
+        subscribeToPlan();
     };
 
     async function subscribeToPlan() {
@@ -117,85 +115,64 @@ function Plans({ products }: Props) {
                     </div>
 
                     <Table products={products} selectedPlan={selectedPlan} />
-                    {!user && (
-                        <form
-                            onSubmit={handleSubmit(onSubmit)}
-                            className="relative mt-24 space-y-8 rounded py-10 px-2"
-                        >
-                            <h1 className=" text-3xl font-medium">
-                                Create a password to start your membership
-                            </h1>
-                            <p className="text-lg">
-                                Just a few more steps and you&apos;re finished!
-                                We hate paperwork, too.
-                            </p>
-                            <div className=" space-y-4 md:space-x-[2%]">
-                                <label className="inline-block w-full md:w-[48%]">
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        className=" input"
-                                        {...register("email", {
-                                            required: true,
-                                        })}
-                                    />
-                                    {errors.email && (
-                                        <p className="p-1 text-[13px] text-orange-500">
-                                            Please enter a valid email.
-                                        </p>
-                                    )}
-                                </label>
-                                <label className="inline-block w-full md:w-[48%]">
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        className="input"
-                                        {...register("password", {
-                                            required: true,
-                                        })}
-                                    />
-                                    {errors.password && (
-                                        <p className="p-1 text-[13px]  text-orange-500">
-                                            Your password must contain between 4
-                                            and 60 characters.
-                                        </p>
-                                    )}
-                                </label>
-                            </div>
-                            <button
-                                disabled={!selectedPlan || isBillingLoading}
-                                className={`w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[400px] block m-auto ${
-                                    isBillingLoading && "opacity-60"
-                                }`}
-                                onClick={() => {
-                                    setLogin(true);
-                                }}
-                            >
-                                {isBillingLoading ? (
-                                    <Loader color="dark:fill-gray-300" />
-                                ) : (
-                                    "Create Account"
+
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="relative mt-24 space-y-8 rounded py-10 px-2"
+                    >
+                        <h1 className=" text-3xl font-medium">
+                            Create a password to start your membership
+                        </h1>
+                        <p className="text-lg">
+                            Just a few more steps and you&apos;re finished! We
+                            hate paperwork, too.
+                        </p>
+                        <div className=" space-y-4 md:space-x-[2%]">
+                            <label className="inline-block w-full md:w-[48%]">
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    className=" input"
+                                    {...register("email", {
+                                        required: true,
+                                    })}
+                                />
+                                {errors.email && (
+                                    <p className="p-1 text-[13px] text-orange-500">
+                                        Please enter a valid email.
+                                    </p>
                                 )}
-                            </button>
-                        </form>
-                    )}
-                    {user && (
+                            </label>
+                            <label className="inline-block w-full md:w-[48%]">
+                                <input
+                                    type="password"
+                                    placeholder="Password"
+                                    className="input"
+                                    {...register("password", {
+                                        required: true,
+                                    })}
+                                />
+                                {errors.password && (
+                                    <p className="p-1 text-[13px]  text-orange-500">
+                                        Your password must contain between 4 and
+                                        60 characters.
+                                    </p>
+                                )}
+                            </label>
+                        </div>
                         <button
                             disabled={!selectedPlan || isBillingLoading}
                             className={`w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[400px] block m-auto ${
                                 isBillingLoading && "opacity-60"
                             }`}
-                            onClick={() => {
-                                subscribeToPlan();
-                            }}
                         >
                             {isBillingLoading ? (
                                 <Loader color="dark:fill-gray-300" />
                             ) : (
-                                "Continue"
+                                "Create Account & Subscribe"
                             )}
                         </button>
-                    )}
+                    </form>
                 </div>
             </main>
         </div>
