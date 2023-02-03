@@ -174,7 +174,7 @@ function Plans({ products }: Props) {
                                 {isBillingLoading ? (
                                     <Loader color="dark:fill-gray-300" />
                                 ) : (
-                                    "Subscribe"
+                                    "Create Account"
                                 )}
                             </button>
                         </form>

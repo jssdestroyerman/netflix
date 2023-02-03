@@ -37,7 +37,7 @@ export default function Home({
     const subscription = useSubscription(user);
     const router = useRouter();
 
-    if (loading || subscription === null) return null;
+    if (loading) return null;
 
     if (!subscription) return router.push("/plans");
 
@@ -55,7 +55,9 @@ export default function Home({
                 />
                 <link rel="icon" href="/iconNetflix.png" />
             </Head>
+
             <Header />
+
             <main className="relative">
                 <Banner netflixOriginals={netflixOriginals} />
                 <section className=" space-y-6 md:space-y-24">
