@@ -10,6 +10,7 @@ import Modal from "@/components/Modal";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import useSubscription from "@/hooks/useSubscription";
+import { useEffect } from "react";
 
 interface Props {
     netflixOriginals: Movie[];
@@ -37,9 +38,9 @@ export default function Home({
     const subscription = useSubscription(user);
     const router = useRouter();
 
-    if (loading) return null;
-
-    // if (!subscription) return router.push("/plans");
+    useEffect(() => {
+        // if (!subscription) router.push("/plans");
+    }, []);
 
     return (
         <div className="backgroundGradient relative h-screen lg:h-[140vh]">
