@@ -38,9 +38,8 @@ export default function Home({
     const subscription = useSubscription(user);
     const router = useRouter();
 
-    useEffect(() => {
-        // if (!subscription) router.push("/plans");
-    }, []);
+    if (loading || subscription === null) return null;
+    if (!subscription) router.push("/plans");
 
     return (
         <div className="backgroundGradient relative h-screen lg:h-[140vh]">
