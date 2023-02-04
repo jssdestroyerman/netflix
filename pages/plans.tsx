@@ -9,6 +9,7 @@ import { HiCheck } from "react-icons/hi";
 import { useState } from "react";
 import Loader from "@/components/Loader";
 import { SubmitHandler, useForm } from "react-hook-form";
+import useSubscription from "@/hooks/useSubscription";
 
 interface Props {
     products: Product[];
@@ -24,6 +25,7 @@ function Plans({ products }: Props) {
     const [selectedPlan, setSelectedPlan] = useState<Product>(products[2]);
     const [isBillingLoading, setIsBillingLoading] = useState(false);
     const { signUp } = useAuth();
+    const subscription = useSubscription(user);
 
     const {
         register,
@@ -39,8 +41,12 @@ function Plans({ products }: Props) {
     async function subscribeToPlan() {
         if (!user) return;
 
-        loadCheckout(selectedPlan.prices[0].id);
-        setIsBillingLoading(true);
+        if (!subscription) {
+            loadCheckout(selectedPlan.prices[0].id);
+            setIsBillingLoading(true);
+        } else {
+            alert("You are already subscribed");
+        }
     }
 
     return (
