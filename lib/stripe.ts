@@ -20,4 +20,17 @@ async function loadCheckout(priceId: string) {
         .catch((error) => console.log(error.message));
 }
 
-export { loadCheckout, payments };
+async function goToBillingPortal() {
+    const instance = getFunctions(app, "europe-west1");
+    const functionRef = httpsCallable(
+        instance,
+        "ext-firestore-stripe-payments-createPortalLink"
+    );
+
+    const { data }: any = await functionRef({
+        returnUrl: window.location.origin,
+    });
+    window.location.assign(data.url);
+}
+
+export { loadCheckout, payments, goToBillingPortal };
