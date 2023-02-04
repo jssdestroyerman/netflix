@@ -3,11 +3,11 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import Membership from "../components/Membership";
 import useAuth from "../hooks/useAuth";
 import useSubscription from "../hooks/useSubscription";
 import { payments } from "../lib/stripe";
+import { HiHome } from "react-icons/hi";
 
 interface Props {
     products: Product[];
@@ -16,7 +16,6 @@ interface Props {
 function Account({ products }: Props) {
     const { user, logout, loading } = useAuth();
     const subscription = useSubscription(user);
-    // const [isBillingLoading, setBillingLoading] = useState(false);
 
     if (loading) return null;
 
@@ -36,7 +35,7 @@ function Account({ products }: Props) {
                         alt="netflix"
                     />
                 </Link>
-                <Link href="/account">
+                <Link href="/" className="relative">
                     <Image
                         src="https://rb.gy/g1pwyx"
                         alt=""
@@ -44,6 +43,7 @@ function Account({ products }: Props) {
                         height={35}
                         className="cursor-pointer rounded"
                     />
+                    <HiHome className="absolute top-0 text-4xl opacity-0 hover:opacity-60 transition bg-[#141414] " />
                 </Link>
             </header>
             <main className="mx-auto max-w-6xl px-5 pt-24 pb-12 transition-all md:px-10">
@@ -67,7 +67,6 @@ function Account({ products }: Props) {
 
                 <div className="mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0">
                     <h4 className="text-lg text-[gray]">Plan Details</h4>
-                    {/* Find the current plan */}
                     <div className="col-span-2 font-medium">
                         {
                             products.filter(
@@ -76,12 +75,6 @@ function Account({ products }: Props) {
                             )[0]?.name
                         }
                     </div>
-                    <p
-                        className="cursor-pointer text-blue-500 hover:underline md:text-right"
-                        // onClick={goToBillingPortal}
-                    >
-                        Change plan
-                    </p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0">
