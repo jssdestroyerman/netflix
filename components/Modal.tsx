@@ -6,6 +6,7 @@ import { Element, Genre } from "@/typings";
 import ReactPlayer from "react-player/lazy";
 import { HiPlay, HiPlus, HiOutlineXMark } from "react-icons/hi2";
 import { HiVolumeOff, HiVolumeUp, HiOutlineThumbUp } from "react-icons/hi";
+import Loader from "./Loader";
 
 function Modal() {
     const [showModal, setShowModal] = useRecoilState(modalState);
@@ -80,9 +81,9 @@ function Modal() {
                             muted={muted}
                         />
                     ) : (
-                        <p className="absolute bottom-24 md:text-2xl px-2 py-1 md:px-4 md:py-4 md:bottom-40 bg-white rounded text-black font-semibold">
-                            Sorry ! This content doesn&apos;t have trailer
-                        </p>
+                        <div className="absolute bottom-24 md:bottom-40 h-12 w-12">
+                            <Loader color="dark:fill-gray-300" />
+                        </div>
                     )}
 
                     <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
