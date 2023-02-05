@@ -4,9 +4,13 @@ import { modalState, movieState } from "@/atoms/modalAtom";
 import { useEffect, useState } from "react";
 import { Element, Genre } from "@/typings";
 import ReactPlayer from "react-player/lazy";
-import { HiPlay, HiPlus, HiOutlineXMark } from "react-icons/hi2";
+import { HiPlay, HiPlus, HiOutlineXMark, HiCheck } from "react-icons/hi2";
 import { HiVolumeOff, HiVolumeUp, HiOutlineThumbUp } from "react-icons/hi";
 import Loader from "./Loader";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase";
+import useAuth from "@/hooks/useAuth";
+import { Toaster, toast } from "react-hot-toast";
 
 function Modal() {
     const [showModal, setShowModal] = useRecoilState(modalState);
@@ -14,6 +18,8 @@ function Modal() {
     const [trailer, setTrailer] = useState<false | string>("");
     const [genres, setGenres] = useState<Genre[]>([]);
     const [muted, setMuted] = useState(true);
+    const [addedToList, setAddedToList] = useState(false);
+    const { user } = useAuth();
 
     useEffect(() => {
         async function fetchMovie() {
@@ -48,6 +54,43 @@ function Modal() {
         fetchMovie();
     }, [currentMovie]);
 
+    async function handleList() {
+        if (addedToList) {
+            await deleteDoc(
+                doc(
+                    db,
+                    "customers",
+                    user!.uid,
+                    "myList",
+                    currentMovie?.id.toString()!
+                )
+            );
+            toast(
+                `${
+                    currentMovie?.title || currentMovie?.original_name
+                } has been removed from My List`,
+                { duration: 8000 }
+            );
+        } else {
+            await setDoc(
+                doc(
+                    db,
+                    "customers",
+                    user!.uid,
+                    "myList",
+                    currentMovie?.id.toString()!
+                ),
+                { ...currentMovie }
+            );
+            toast(
+                `${
+                    currentMovie?.title || currentMovie?.original_name
+                } has been added to My List`,
+                { duration: 8000 }
+            );
+        }
+    }
+
     function handleClose() {
         setShowModal(false);
     }
@@ -59,6 +102,7 @@ function Modal() {
             className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll"
         >
             <>
+                <Toaster position="bottom-center" />
                 <button
                     onClick={handleClose}
                     className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 md:h-11 md:w-11 border-none bg-[#181818] hover:bg-[#181818]"
@@ -92,8 +136,15 @@ function Modal() {
                                 <HiPlay className=" h-4 w-4 text-black md:h-7 md:w-7" />
                                 Play
                             </button>
-                            <button className="modalButton">
-                                <HiPlus className="h-4 w-4 md:h-7 md:w-7" />
+                            <button
+                                className="modalButton"
+                                onClick={handleList}
+                            >
+                                {addedToList ? (
+                                    <HiCheck className="h-4 w-4 md:h-7 md:w-7" />
+                                ) : (
+                                    <HiPlus className="h-4 w-4 md:h-7 md:w-7" />
+                                )}
                             </button>
                             <button className="modalButton">
                                 <HiOutlineThumbUp className=" h-4 w-4 md:h-7 md:w-7" />
