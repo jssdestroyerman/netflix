@@ -129,7 +129,7 @@ function Modal() {
                         </div>
 
                         <div className=" flex flex-col gap-x-10 gap-y-4  md:flex-row">
-                            <p className="md:w-5/6 text-justify md:text-left">
+                            <p className="md:w-5/6 text-justify md:text-left text-base md:text-lg">
                                 {currentMovie?.overview}
                             </p>
                             <div className=" flex flex-col space-y-3 text-sm">

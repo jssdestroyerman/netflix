@@ -1,10 +1,9 @@
-import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineBellAlert, HiMagnifyingGlass } from "react-icons/hi2";
+import BasicMenu from "./BasicMenu";
 
 function Header() {
-    const { logout } = useAuth();
     return (
         <header>
             <div className="flex items-center space-x-2 md:space-x-10">
@@ -15,6 +14,8 @@ function Header() {
                     className="cursor-pointer object-contain"
                     alt=""
                 />
+
+                <BasicMenu />
 
                 <ul className="hidden space-x-4 md:flex">
                     <li className="headerLink">Home</li>
