@@ -7,7 +7,7 @@ import Membership from "../components/Membership";
 import useAuth from "../hooks/useAuth";
 import useSubscription from "../hooks/useSubscription";
 import { payments } from "../lib/stripe";
-import { HiHome } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 
 interface Props {
     products: Product[];
@@ -43,7 +43,7 @@ function Account({ products }: Props) {
                         height={35}
                         className="cursor-pointer rounded"
                     />
-                    <HiHome className="absolute top-0 text-4xl opacity-0 hover:opacity-60 transition bg-[#141414] " />
+                    <HiX className="absolute top-0 text-4xl opacity-0 hover:opacity-60 transition bg-[#141414] " />
                 </Link>
             </header>
             <main className="mx-auto max-w-6xl px-5 pt-24 pb-12 transition-all md:px-10">
