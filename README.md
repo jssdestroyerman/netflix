@@ -5,8 +5,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Signup && Subscribe
 
-Card number: 4242 4242 4242 4242
-Expiration: any
+Card number: 4242 4242 4242 4242<br>
+Expiration: any<br>
 CVC: any
 
 ## Getting Started
