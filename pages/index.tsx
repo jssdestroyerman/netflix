@@ -5,12 +5,12 @@ import { Movie } from "@/typings";
 import Banner from "@/components/Banner";
 import Row from "@/components/Row";
 import { useRecoilValue } from "recoil";
-import { modalState } from "@/atoms/modalAtom";
+import { modalState, movieState } from "@/atoms/modalAtom";
 import Modal from "@/components/Modal";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import useSubscription from "@/hooks/useSubscription";
-import { useEffect } from "react";
+import useList from "@/hooks/useList";
 
 interface Props {
     netflixOriginals: Movie[];
@@ -37,6 +37,8 @@ export default function Home({
     const { loading, user } = useAuth();
     const subscription = useSubscription(user);
     const router = useRouter();
+    const currentMovie = useRecoilValue(movieState);
+    const list = useList(user?.uid);
 
     if (loading || subscription === null) return null;
     if (!subscription) router.push("/plans");
@@ -64,7 +66,8 @@ export default function Home({
                     <Row title="Trending Now" movies={trendingNow} />
                     <Row title="Top Rated" movies={topRated} />
                     <Row title="Action Thrillers" movies={actionMovies} />
-                    {/* My List */}
+
+                    {list?.length > 0 && <Row title="My List" movies={list} />}
 
                     <Row title="Comedies" movies={comedyMovies} />
                     <Row title="Scary Movies" movies={horrorMovies} />

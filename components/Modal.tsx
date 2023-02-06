@@ -2,12 +2,19 @@ import MuiModal from "@mui/material/Modal";
 import { useRecoilState } from "recoil";
 import { modalState, movieState } from "@/atoms/modalAtom";
 import { useEffect, useState } from "react";
-import { Element, Genre } from "@/typings";
+import { Element, Genre, Movie } from "@/typings";
 import ReactPlayer from "react-player/lazy";
 import { HiPlay, HiPlus, HiOutlineXMark, HiCheck } from "react-icons/hi2";
 import { HiVolumeOff, HiVolumeUp, HiOutlineThumbUp } from "react-icons/hi";
 import Loader from "./Loader";
-import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import {
+    collection,
+    deleteDoc,
+    doc,
+    DocumentData,
+    onSnapshot,
+    setDoc,
+} from "firebase/firestore";
 import { db } from "@/firebase";
 import useAuth from "@/hooks/useAuth";
 import { Toaster, toast } from "react-hot-toast";
@@ -19,6 +26,7 @@ function Modal() {
     const [genres, setGenres] = useState<Genre[]>([]);
     const [muted, setMuted] = useState(true);
     const [addedToList, setAddedToList] = useState(false);
+    const [moviesDB, setMoviesDB] = useState<DocumentData[] | Movie[]>();
     const { user } = useAuth();
 
     useEffect(() => {
@@ -53,6 +61,27 @@ function Modal() {
         }
         fetchMovie();
     }, [currentMovie]);
+
+    // Find all the movies in the user's list
+    useEffect(() => {
+        if (user) {
+            return onSnapshot(
+                collection(db, "customers", user.uid, "myList"),
+                (snapshot) => setMoviesDB(snapshot.docs)
+            );
+        }
+    }, [db, currentMovie?.id]);
+
+    // Check if the movie is already in the user's list
+    useEffect(
+        () =>
+            setAddedToList(
+                moviesDB?.findIndex(
+                    (result) => result.data().id === currentMovie?.id
+                ) !== -1
+            ),
+        [moviesDB]
+    );
 
     async function handleList() {
         if (addedToList) {

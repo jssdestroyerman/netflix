@@ -4,10 +4,11 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useRef } from "react";
 import { useRecoilState } from "recoil";
 import { modalState, movieState } from "@/atoms/modalAtom";
+import { DocumentData } from "firebase/firestore";
 
 interface Props {
     title: string;
-    movies: Movie[];
+    movies: Movie[] | DocumentData | undefined;
 }
 
 function Row({ title, movies }: Props) {
@@ -58,7 +59,7 @@ function Row({ title, movies }: Props) {
                     ref={rowRef}
                     className="hideScrollBar flex items-center space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2"
                 >
-                    {movies.map((movie) => {
+                    {movies?.map((movie) => {
                         return (
                             <div
                                 key={movie.id}
