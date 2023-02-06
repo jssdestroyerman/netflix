@@ -3,6 +3,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 <img src="./readmePictures/loginScreen.png">
 <img src="./readmePictures/homepageScreen.png">
 
+## Signup && Subscribe
+
+Card number: 4242 4242 4242 4242
+Expiration: any
+CVC: any
+
 ## Getting Started
 
 First, run the development server:
