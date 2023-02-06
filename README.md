@@ -1,9 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-<p align="center">
-  <img src="./readmePictures/loginScreen.png" width="350">
-  <img src="./readmePictures/homepageScreen.png" width="350">
-</p>
+<img src="./readmePictures/loginScreen.png" width="350">
+<img src="./readmePictures/homepageScreen.png" width="350">
 
 ## Getting Started
 
