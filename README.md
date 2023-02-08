@@ -1,9 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Netflix Clone<br>
+Thanks https://www.youtube.com/@ilwyennefer for guidelines.
+
 <img src="./readmePictures/loginScreen.png">
 <img src="./readmePictures/homepageScreen.png">
 
-## Signup && Subscribe
+## Subscription
 
 Card number: 4242 4242 4242 4242<br>
 Expiration: any<br>
