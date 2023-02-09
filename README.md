@@ -11,9 +11,9 @@ Technologies:
 
 ## ScreenShots
 <div style="display: flex">
-<img src="./readmePictures/loginScreen.png" style="width:49%">&emsp;
+<img src="./readmePictures/loginScreen.png" style="width:49%">&ensp;
 <img src="./readmePictures/subscriptionScreen.png" style="width:49%">
-<img src="./readmePictures/homepageScreen.png" style="width:49%">&emsp;
+<img src="./readmePictures/homepageScreen.png" style="width:49%">&ensp;
 <img src="./readmePictures/accountScreen.png" style="width:49%">
 <div>
 
