@@ -11,10 +11,10 @@ Technologies:
 
 ## ScreenShots
 
-<img src="./readmePictures/loginScreen.png" style="width:45%" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="./readmePictures/subscriptionScreen.png" style="width:45%">
-<img src="./readmePictures/homepageScreen.png" style="width:45%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="./readmePictures/accountScreen.png" style="width:45%">
+<img src="./readmePictures/loginScreen.png" style="width:49%">
+<img src="./readmePictures/subscriptionScreen.png" style="width:49%">
+<img src="./readmePictures/homepageScreen.png" style="width:49%">
+<img src="./readmePictures/accountScreen.png" style="width:49%">
 
 ## Subscription with Stripe
 
