@@ -1,24 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Netflix Clone
 
-<img src="./readmePictures/loginScreen.png">
+Build with ->
+
+-   NextJS <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fseeklogo.com%2Fimages%2FN%2Fnext-js-icon-logo-EE302D5DBD-seeklogo.com.png&f=1&nofb=1&ipt=fed8bb7173de017d670b6471cad826895a4c31ef58dcb9fd2b21aeef882d6efc&ipo=images">
+-   TailwindCSS
+-   TypeScript
+-   Firebase
+-   Stripe
+-   Recoil
+-   Material UI
+
+<img src="./readmePictures/loginScreen.png" >
 <img src="./readmePictures/homepageScreen.png">
 
-## Signup && Subscribe
+## Subscription
 
 Card number: 4242 4242 4242 4242<br>
 Expiration: any<br>
 CVC: any
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Thanks https://www.youtube.com/@ilwyennefer for guidelines.
