@@ -11,10 +11,10 @@ Technologies:
 -   Material UI
 
 
-<img src="./readmePictures/loginScreen.png" style="width:40%" >
-<img src="./readmePictures/subscriptionScreen.png" style="width:40%, margin-left:5%" >
-<img src="./readmePictures/homepageScreen.png" style="width:40%">
-<img src="./readmePictures/accountScreen.png" style="width:40%, margin-left:5%">
+<img src="./readmePictures/loginScreen.png" style="width:40%" >&nbsp;&nbsp;
+<img src="./readmePictures/subscriptionScreen.png" style="width:40%">
+<img src="./readmePictures/homepageScreen.png" style="width:40%">&nbsp;&nbsp;
+<img src="./readmePictures/accountScreen.png" style="width:40%">
 
 ## Subscription
 
