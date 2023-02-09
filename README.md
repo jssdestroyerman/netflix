@@ -1,7 +1,7 @@
 ## Netflix Clone
 
-Build with -> 
-- NextJS
+Technologies:
+- NextJS 
 - TailwindCSS
 - TypeScript
 - Firebase
@@ -9,11 +9,15 @@ Build with ->
 - Recoil
 - Material UI
 
-<img src="./readmePictures/loginScreen.png">
-<img src="./readmePictures/homepageScreen.png">
+## ScreenShots
+<div style="display: flex">
+<img src="./readmePictures/loginScreen.png" style="width:49%">&ensp;
+<img src="./readmePictures/subscriptionScreen.png" style="width:49%">
+<img src="./readmePictures/homepageScreen.png" style="width:49%">&ensp;
+<img src="./readmePictures/accountScreen.png" style="width:49%">
+<div>
 
-## Subscription
-
+## Subscription with Stripe
 Card number: 4242 4242 4242 4242<br>
 Expiration: any<br>
 CVC: any
