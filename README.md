@@ -1,5 +1,5 @@
 ## Netflix Clone
-
+C:\Users\caius\Documents\github\netflix\public\iconNetflix.png
 Technologies:
 - NextJS 
 - TailwindCSS
