@@ -18,7 +18,6 @@ Technologies:
 <div>
 
 ## Subscription with Stripe
-
 Card number: 4242 4242 4242 4242<br>
 Expiration: any<br>
 CVC: any
