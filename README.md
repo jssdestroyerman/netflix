@@ -10,12 +10,12 @@ Technologies:
 -   Recoil
 -   Material UI
 
-<div style="display: flex justify-content: space-between">
-    <img src="./readmePictures/loginScreen.png" style="width:40%" >
-    <img src="./readmePictures/subscriptionScreen.png" style="width:40%" >
-    <img src="./readmePictures/homepageScreen.png" style="width:40%">
-    <img src="./readmePictures/accountScreen.png" style="width:40%">
-</div>
+
+<img src="./readmePictures/loginScreen.png" style="width:40%" >
+<img src="./readmePictures/subscriptionScreen.png" style="width:40%, margin-left:5%" >
+<img src="./readmePictures/homepageScreen.png" style="width:40%">
+<img src="./readmePictures/accountScreen.png" style="width:40%, margin-left:5%">
+
 ## Subscription
 
 Card number: 4242 4242 4242 4242<br>
