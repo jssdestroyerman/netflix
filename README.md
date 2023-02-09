@@ -10,7 +10,7 @@ Technologies:
 -   Recoil
 -   Material UI
 
-<div style="display:flex justify-content:flex-between">
+<div style="display:flex justify-content:space-between">
     <img src="./readmePictures/loginScreen.png" style="width:40%" >
     <img src="./readmePictures/subscriptionScreen.png" style="width:40%" >
     <img src="./readmePictures/homepageScreen.png" style="width:40%">
