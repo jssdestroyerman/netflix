@@ -33,10 +33,6 @@ Technologies:
 ![homepageScreen](https://user-images.githubusercontent.com/114258377/217884976-9bf33c39-6485-419a-8a8e-5e5dbcde04b3.png)
 ![accountScreen](https://user-images.githubusercontent.com/114258377/217885001-190d3b6f-7fca-484e-ab36-cfafe5ca19de.png)
 
-
-
-
-
 ## Subscription with Stripe
 
 Card number: 4242 4242 4242 4242<br>
