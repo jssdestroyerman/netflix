@@ -8,7 +8,7 @@ function Header() {
         <header>
             <div className="flex items-center space-x-2 md:space-x-10">
                 <Image
-                    src="https://rb.gy/ulxxee"
+                    src="/icon.png"
                     width={100}
                     height={100}
                     className="cursor-pointer object-contain"
@@ -31,7 +31,7 @@ function Header() {
                 <HiOutlineBellAlert className="h-6 w-6 " />
                 <Link href={"/account"}>
                     <Image
-                        src="https://rb.gy/g1pwyx"
+                        src="/account.png"
                         alt=""
                         width={35}
                         height={35}

@@ -67,10 +67,10 @@ function Plans({ products }: Props) {
             <header>
                 <Link href="/login">
                     <Image
-                        src="https://rb.gy/ulxxee"
+                        src="/icon.png"
+                        width={100}
+                        height={100}
                         alt="Netflix"
-                        width={150}
-                        height={90}
                         className="cursor-pointer object-contain"
                     />
                 </Link>

@@ -3,8 +3,7 @@ const nextConfig = {
     transpilePackages: ["@stripe/firestore-stripe-payments"],
     reactStrictMode: true,
     images: {
-        dangerouslyAllowSVG: true,
-        domains: ["rb.gy", "image.tmdb.org"],
+        domains: ["image.tmdb.org"],
     },
 };
 

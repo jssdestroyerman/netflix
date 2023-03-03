@@ -41,13 +41,13 @@ function Login() {
                 <link rel="icon" href="/iconNetflix.png" />
             </Head>
             <Image
-                src="https://rb.gy/p2hphi"
+                src="/loginBackground.jpg"
                 fill
                 className="-z-10 object-cover hidden opacity-60 md:inline"
                 alt="background"
             />
             <Image
-                src="https://rb.gy/ulxxee"
+                src="/icon.png"
                 className="absolute left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6"
                 width={150}
                 height={150}
